@@ -49,22 +49,19 @@ public class HomePage {
     @FindBy(xpath = "//*[@id=\"doMinute\"]")
     private WebElement doMinute;
 
-    @FindBy(xpath = "//*[@id=\"formsubmit\"]")
+    @FindBy(xpath = "//input[@id=\"formsubmit\"]")
     private WebElement search;
 
 
     public void inputPickUpLocation(String pickLoc) {
-        pickUpLocation.clear();
         pickUpLocation.sendKeys(pickLoc);
     }
 
     public void selectPickUpDate(LocalDate picDate) {
-        pickUpDate.clear();
         pickUpDate.sendKeys(picDate.format(dateFormatter));
     }
 
     public void selectDropOffDate(LocalDate dropDate) {
-        dropOffDate.clear();
         dropOffDate.sendKeys(dropDate.format(dateFormatter));
     }
 
@@ -73,7 +70,7 @@ public class HomePage {
     }
 
 
-    public boolean ErrorMessageExpected() {
+    public boolean errorMessageExpected() {
         WebDriverWait wait = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return wait.until(ExpectedConditions.alertIsPresent()) != null;
     }
