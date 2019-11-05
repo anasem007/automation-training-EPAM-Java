@@ -10,34 +10,34 @@ import java.time.LocalDate;
 
 public class HomePageTest {
     private WebDriver driver;
-    private HomePage page;
+    private HomePage homePage;
     private final LocalDate pickUpDate = LocalDate.now();
 
     @BeforeClass
     public void setUpChromeDriver() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver = new ChromeDriver();
-        page = new HomePage(driver);
+        homePage = new HomePage(driver);
         driver.manage().window().maximize();
     }
 
     @Test
     public void attemptBooking() {
-        page.inputPickUpLocation("Minsk, Belarus");
-        page.selectPickUpDate(pickUpDate);
-        page.selectDropOffDate(pickUpDate.plusDays(3));
-        page.selectSearch();
+        page.inputPickUpLocation("Minsk, Belarus")
+            .selectPickUpDate(pickUpDate)
+            .selectDropOffDate(pickUpDate.plusDays(3))
+            .selectSearch();
         Assert.assertFalse(page.ErrorMessageExpected());
     }
 
     @Test
     public void bookingDropOffTimeGreaterThanPickUpTime() {
-        page.inputPickUpLocation("Minsk, Belarus");
-        page.selectPickUpDate(pickUpDate);
-        page.selectDropOffDate(pickUpDate);
-        page.selectPickUpTime("13","00");
-        page.selectDropOffTime("11","00");
-        page.selectSearch();
+        page.inputPickUpLocation("Minsk, Belarus")
+            .selectPickUpDate(pickUpDate)
+            .selectDropOffDate(pickUpDate)
+            .selectPickUpTime("13","00")
+            .selectDropOffTime("11","00")
+            .selectSearch()
         Assert.assertTrue(page.ErrorMessageExpected());
     }
 
