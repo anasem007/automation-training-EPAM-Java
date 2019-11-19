@@ -8,7 +8,14 @@ import model.plane.Plane;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+
 public class Runner {
+    private static final Logger logger = LogManager.getLogger(Runner.class);
+
     static List<Plane> planes = Arrays.asList(
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),
@@ -31,10 +38,10 @@ public class Runner {
         Airport airport = new Airport(planes);
         Airport militaryAirport = new Airport(airport.getMilitaryPlanes());
         Airport passengerAirport = new Airport(airport.getPassengerPlanes());
-        logger.log(level.INFO, "Military airport sorted by max distance: " + militaryAirport
+        logger.log(Level.INFO, "Military airport sorted by max distance: " + militaryAirport
                 .sortByMaxDistance()
                 .toString());
-        logger.log(level.INFO, "Passenger airport sorted by max speed: " + passengerAirport
+        logger.log(Level.INFO, "Passenger airport sorted by max speed: " + passengerAirport
                 .sortByMaxSpeed()
                 .toString());
 
