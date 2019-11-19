@@ -44,7 +44,8 @@ public class Runner {
         logger.log(Level.INFO, "Passenger airport sorted by max speed: " + passengerAirport
                 .sortByMaxSpeed()
                 .toString());
-
-        System.out.println("Plane with max passenger capacity: " + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
+        logger.log(Level.INFO, "Plane with max passenger capacity: " +
+                 passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
+    }
     }
 }
