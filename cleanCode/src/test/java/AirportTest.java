@@ -76,8 +76,7 @@ public class AirportTest {
 
     @Test
     public void testHasAtLeastOneBomberInMilitaryPlanes() {
-        logger.log(Level.INFO, "Test isAirportHasPassengerPlaneWithMaxCapacity started.");
-        assertTrue(airport.getBomberMilitaryPlanes()
+          assertTrue(airport.getBomberMilitaryPlanes()
                 .stream()
                 .allMatch(militaryPlane -> MilitaryPlaneType.BOMBER.equals(militaryPlane.getMilitaryPlaneType())));
     }
