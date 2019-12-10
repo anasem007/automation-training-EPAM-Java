@@ -9,15 +9,16 @@ import model.plane.Plane;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
-
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class AirportTest {
+    private static final Logger logger = LogManager.getLogger(AirportTest.class);
     private static List<Plane> planes = Arrays.asList(
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),
@@ -54,7 +55,6 @@ public class AirportTest {
 
     @Test
     public void testGetPassengerPlaneWithMaxCapacity() {
-        Airport airport = new Airport(planes);
         PassengerPlane expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
         Assert.assertEquals( planeWithMaxPassengerCapacity, expectedPlaneWithMaxPassengersCapacity);
     }
@@ -76,8 +76,7 @@ public class AirportTest {
 
     @Test
     public void testHasAtLeastOneBomberInMilitaryPlanes() {
-        logger.log(Level.INFO, "Test isAirportHasPassengerPlaneWithMaxCapacity started.");
-        assertTrue(airport.getBomberMilitaryPlanes()
+          assertTrue(airport.getBomberMilitaryPlanes()
                 .stream()
                 .allMatch(militaryPlane -> MilitaryPlaneType.BOMBER.equals(militaryPlane.getMilitaryPlaneType())));
     }
