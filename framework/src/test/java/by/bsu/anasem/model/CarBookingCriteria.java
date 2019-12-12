@@ -11,6 +11,7 @@ public class CarBookingCriteria {
     private String puMinute;
     private String doHour;
     private String doMinute;
+    private String driversAge;
 
     public CarBookingCriteria(String pickUpLocation, String dropOffLocation,
                                    String pickUpDate, String dropOffDate, String puHour,
@@ -25,6 +26,13 @@ public class CarBookingCriteria {
         this.doMinute = doMinute;
     }
 
+    public CarBookingCriteria(String pickUpLocation, String dropOffLocation, String pickUpDate, String dropOffDate) {
+        this.pickUpLocation = pickUpLocation;
+        this.dropOffLocation = dropOffLocation;
+        this.pickUpDate = pickUpDate;
+        this.dropOffDate = dropOffDate;
+    }
+
     public CarBookingCriteria(String pickUpLocation, String pickUpDate, String dropOffDate, String puHour,
                               String puMinute, String doHour, String doMinute) {
         this.pickUpLocation = pickUpLocation;
@@ -34,6 +42,11 @@ public class CarBookingCriteria {
         this.puMinute = puMinute;
         this.doHour = doHour;
         this.doMinute = doMinute;
+    }
+
+    public CarBookingCriteria(String pickUpLocation, String driversAge) {
+        this.pickUpLocation = pickUpLocation;
+        this.driversAge = driversAge;
     }
 
     public String getPickUpLocation() {
@@ -100,6 +113,10 @@ public class CarBookingCriteria {
         this.doMinute = doMinute;
     }
 
+    public String getDriversAge() { return driversAge; }
+
+    public void setDriversAge(String driversAge) { this.driversAge = driversAge; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -112,11 +129,12 @@ public class CarBookingCriteria {
                 Objects.equals(puHour, that.puHour) &&
                 Objects.equals(puMinute, that.puMinute) &&
                 Objects.equals(doHour, that.doHour) &&
-                Objects.equals(doMinute, that.doMinute);
+                Objects.equals(doMinute, that.doMinute) &&
+                Objects.equals(driversAge, that.driversAge);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pickUpLocation, dropOffLocation, pickUpDate, dropOffDate, puHour, puMinute, doHour, doMinute);
+        return Objects.hash(pickUpLocation, dropOffLocation, pickUpDate, dropOffDate, puHour, puMinute, doHour, doMinute, driversAge);
     }
 }
