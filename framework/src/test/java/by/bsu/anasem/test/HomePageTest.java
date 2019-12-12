@@ -62,7 +62,7 @@ public class HomePageTest extends CommonConditions{
                 .selectPickUpDate(carBookingCriteria.getPickUpDate())
                 .selectDropOffDate(carBookingCriteria.getPickUpDate())
                 .selectPickUpTime(carBookingCriteria.getPuHour(), carBookingCriteria.getPuMinute())
-                .selectDropOffTime(carBookingCriteria.getDoHour(), carBookingCriteria.getDoMinute())
+                .selectDropOffTime(carBookingCriteria.getPuHour(), carBookingCriteria.getPuMinute())
                 .redirectToHomePage();
         Assert.assertEquals("There must be at least one hour between pick up and drop off", homePage.getAlertMessage());
         logger.log(Level.INFO, "Test pick up date and time coincides with drop off date and time was completed");
