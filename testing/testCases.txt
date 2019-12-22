@@ -1,26 +1,84 @@
 https://www.rentalcars.com/en/
 
-
-
-1. При попытке поставить время возврата автомобиля ранее времени аренды возникает сообщение об ошибке.
-Steps:
-	1) В поле Drop-off Date выбираем "Minsk, Belarus"
-	2) В поле Choose Pick-up Date выбираем Thu 30 Oct 2019 
-	3) В поле Choose Drop-off Date выбраем Thu 30 Oct 2019 
-	4) В Pick-up Date ставим время 17.00
-	5) В Drop-off Date ставим время 12.00
-	4) Нажимаем на "Search"
-Результат: появляется сообщение "Pick-up Date must be before Drop off date"
-
-2. При попытке арендовать автомобиль там, где нет станций аренды, форма Pick-up Location подсвечивается красным
+1. Description: drop off time earlier thanpick up time
 Steps: 
-	1) В поле Pick-up Date набираем "Dribin, Belarus"
-	2) В поле Choose Pick-up Date выбираем Thu 30 Oct 2019 
-	3) В поле Choose Drop-off Date выбраем Thu 30 Oct 2019 
-	4) В Pick-up Date ставим время 12.00
-	5) В Drop-off Date ставим время 17.00
-	4) Нажимаем на "Search"
-Результат: форма Pick-up Location подсвечивается красным
+	1) Пользователь заходит на сайт "https://www.rentalcars.com/en/";
+	2) В поле Pick-up Location вводит "Minsk International Airport";
+	3) В поле Choose Pick-up Date выбирает "Date.now + 1";
+	4) В поле Choose Drop-off Date выбрает "Date.now + 1";
+	5) В Pick-up time ставит время 12.00;
+	6) В Drop-off time ставит время 10.00;
+	7) Нажимает на "Search";
+Expected Result: Вверху страницы выводится alert message "Pick-up Date must be before Drop off date"
+
+2. Description: booking car with empty drop off location
+Steps:
+	1) Пользователь заходит на сайт "https://www.rentalcars.com/en/";
+	2) В поле Pick-up Location вводит "Minsk International Airport";
+	3) Нажимает на галочку Drop car off at different location;
+	4) Поле Drop off Location оставляет пустым;
+	5) В поле Choose Pick-up Date выбирает "Date.now + 1";
+	6) В поле Choose Drop-off Date выбрает "Date.now + 2";
+	7) В Pick-up time ставит время 12.00;
+	8) В Drop-off time ставит время 10.00;
+	9) Нажимает на "Search";
+Expected Result: Вверху страницы выводится alert message "Drop off Location must be specified"
+
+3. Description: rental time starts in a few minutes
+Steps:
+	1) Пользователь заходит на сайт "https://www.rentalcars.com/en/";
+	2) В поле Pick-up Location вводит "Minsk International Airport";
+	3) В поле Choose Pick-up Date выбирает "Date.now";
+	4) В поле Choose Drop-off Date выбрает "Date.now + 2";
+	5) В Pick-up time ставит время "Time.now";
+	6) В Drop-off time ставит время 10.00;
+	7) Нажимает на "Search";	
+Expected Result: Вверху страницы выводится alert message "Pick-up time must be at least 1 hour in the future"
+
+4. Description: pick up date and time coincides with drop off
+Steps:
+	1) Пользователь заходит на сайт "https://www.rentalcars.com/en/";
+	2) В поле Pick-up Location вводит "Minsk International Airport";
+	3) В поле Choose Pick-up Date выбирает "Date.now";
+	4) В поле Choose Drop-off Date выбрает "Date.now";
+	5) В Pick-up time ставит время "Time.now + 2";
+	6) В Drop-off time ставит время "Time.now + 2";
+	7) Нажимает на "Search";	
+Expected Result: Вверху страницы выводится alert message "There must be at least one hour between pick up and drop off"
+
+5. Description: driver age is less than eighteen
+Steps:
+	1) Пользователь заходит на сайт "https://www.rentalcars.com/en/";
+	2) В поле Pick-up Location вводит "Minsk International Airport";
+	3) В поле Choose Pick-up Date выбирает "Date.now";
+	4) В поле Choose Drop-off Date выбрает "Date.now + 1";
+	5) В Pick-up time ставит время "Time.now + 2";
+	6) В Drop-off time ставит время "Time.now + 2";
+	7) Снимает галочку Driver aged between 30-65?;
+	8) В поле Driver's age вводит "17";
+	7) Нажимает на "Search";
+Expected Result: Вверху страницы выводится alert message "Driver's age must be  at least 18"
+
+6. Description: booking place closed at the requested hours
+Steps:
+Expected Result:
+
+7. Description:
+Steps:
+Expected Result:
+
+8. Description:
+Steps:
+Expected Result:
+
+9. Description:
+Steps:
+Expected Result:
+
+10. Description:
+Steps:
+Expected Result:
+
 
 3.При попытке арендовать автомобиль, когда нет достпуных автомобилей, появляется сообщение с предупреждением
 Steps:
@@ -34,17 +92,6 @@ Steps:
 	8) Нажимем на "Search"
 Результат: сообщение "We're sorry, but the companies we work with in Paris don't have any cars available"
 
-4.При попытке оставить пустым поле Drop-off Location появляется сообщение об ошибке
-Steps:
-	1) поле Pick-up Location вводим "Minsk"
-	2) Ставим галочку напротив Drop car off at different location
-	3) Поле Drop-off Location оставляем пустым
-	4) В поле Choose Pick-up Date выбираем Thu 30 Oct 2019 
-	5) В поле Choose Drop-off Date выбраем Thu 31 Oct 2019 
-	6) В Pick-up Date ставим время 12.00
-	7) В Drop-off Date ставим время 12.00
-	8) Нажимем на "Search"
-Результат: возникает сообщение "Drop off Location must be specified"
 
 5. Проверить, можно ли арендовать автомобиль в нерабочее время
 Steps:
@@ -55,16 +102,6 @@ Steps:
 	5) В Drop-off Date ставим время 08.00
 	6) Нажимем на "Search"
 Результат: сообщение "Sorry, but the companies we work with in Minsk International Airport (MSQ) are all closed on Saturday at 08:00 and on Sunday at 08:00"
-
-6. При выборе времени аренды, которое начинается через несколько минут, появляется сообщение о наличии дедлайна для бронирования
-Steps:
-	1) В поле Pick-up Date выбираем "Minsk, Belarus"
-	2) В поле Choose Pick-up Date выбираем Thu 28 Oct 2019 
-	3) В поле Choose Drop-off Date выбраем Thu 28 Oct 2019 
-	4) В Pick-up Date ставим время 19.00
-	5) В Drop-off Date ставим время 22.00
-	6) Нажимем на "Search"
-Результат: сообщение "Pick-up time must be at least 1 hour in the future"
 
 
 7. Попробовать арендовать автомобиль
@@ -80,26 +117,4 @@ Steps:
 	4) Заполняем форму Driver корректными данными и нажимаем Book now
 Результат: возникает форма "Payment Details ... and the car is yours" для оплаты
 
-8. На шаге "Payment" попробовать изменить данные автомобиля
-Steps:
-	0) смотр. п. 7
-	1) Нажимаем Car details -> Change
-	2) Выбираем любой автомобиль из предложенных (любой другой кроме ранее выбранного) кликнув "View deal" 
-Результат: выскакивает "Driver details" с уже заполненными данными
 
-9. Попробовать изменить валюту
-Steps:
-	1) В поле Pick-up Date выбираем "Minsk, Belarus"
-	2) В поле Choose Pick-up Date выбираем Thu 28 Oct 2019 
-	3) В поле Choose Drop-off Date выбраем Thu 31 Oct 2019 
-	4) В Pick-up Date ставим время 10.00
-	5) В Drop-off Date ставим время 10.00
-	6) Нажимем на "Search"
-	7) Меняем US Dollar на British Pound
-Результат: При изменении валюты стоимость предпологаемых арендуемых автомобилией отображается в выбранной валюте
-
-10. Проверка сайта на одновременную поддержку RTL и LTR стандартов
-Steps:
-	*сайт адаптирован под LTR стандрат
-	1) меняем язык "English" на иврит
-Результат: адаптация интерфейса под RTL
