@@ -8,7 +8,7 @@ public class CarBookingCreator {
 
     public static final String TESTDATA_PICKUP_LOCATION = "testdata.pickup.location";
     public static final String TESDATA_PICKUP_DATE = "testdata.pickup.date";
-    public static final String TESDATA_DROPOFF_DATE = "testdata.pickup.date";
+    public static final String TESDATA_DROPOFF_DATE = "testdata.dropoff.date";
     public static final String TESTDATA_PICKUP_HOUR = "testdata.pickup.hour";
     public static final String TESTDATA_PICKUP_MINUTE = "testdata.pickup.minute";
     public static final String TESDATA_CURRENT_PICKUP_DATE = "testdata.current.pickup.date";
