@@ -13,7 +13,7 @@ public class CarSelectionPageTest extends CommonConditions {
     private HomePage homePage = new HomePage(driver);
     private final Logger logger = LogManager.getRootLogger();
 
-    @Test
+    /*@Test
     public void bookingPlaceClosedAtTheRequestedHours() {
         CarBookingCriteria carBookingCriteria = CarBookingCreator.withCloserTime();
         String bookingInfoPlaceClosed = homePage.bookingCar(carBookingCriteria).getInfoMessage();
@@ -36,5 +36,5 @@ public class CarSelectionPageTest extends CommonConditions {
         CarBookingCriteria carBookingCriteria = CarBookingCreator.withoutDropOffLocation();
         Assert.assertTrue(homePage.bookingCar(carBookingCriteria).getCars());
         logger.log(Level.INFO, "Test rent and return car in the same place was completed");
-    }
+    }*/
 }

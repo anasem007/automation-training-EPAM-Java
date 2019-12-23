@@ -1,6 +1,7 @@
 package by.bsu.anasem.page;
 
 import by.bsu.anasem.model.CarBookingCriteria;
+import by.bsu.anasem.service.WaitHelper;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -9,7 +10,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class HomePage extends AbstractPage {
 
@@ -116,7 +121,10 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage inputPickUpLocation(String pickLoc) {
+        WebDriverWait wait=new WebDriverWait(driver, 40);
         pickUpLocation.sendKeys(pickLoc);
+        WebElement li = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@class='ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all']//li[1]")));
+        li.click();
         logger.info("Filled 'Pick-up location' field with " + pickLoc);
         return this;
     }
@@ -129,13 +137,33 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage selectPickUpDate(String picDate) {
-        dropOffDate.sendKeys(picDate);
+        clickPickUpDateButton();
+        WaitHelper.waitUntil(driver, WAIT_TIMEOUT_SECONDS, By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        List<WebElement> data = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        data = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        data = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        WebElement foundDay = data
+                .stream()
+                .filter(o -> o.getText().equals(picDate))
+                .findFirst()
+                .orElse(null);
+        foundDay.click();
+        clickPickUpDateButton();
         logger.info("Filled 'Pick-up date' field with " + picDate);
         return this;
     }
 
     public HomePage selectDropOffDate(String dropDate) {
-        dropOffDate.sendKeys(dropDate);
+        clickDropOffDateButton();
+        WaitHelper.waitUntil(driver, WAIT_TIMEOUT_SECONDS, By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        List<WebElement> data = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        data = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//td//a"));
+        WebElement foundDay = data
+                .stream()
+                .filter(o -> o.getText().equals(dropDate))
+                .findFirst()
+                .orElse(null);
+        foundDay.click();
         logger.info("Filled 'Drop off date' field with " + dropDate);
         return this;
     }
@@ -146,6 +174,8 @@ public class HomePage extends AbstractPage {
     }
 
     public HomePage redirectToHomePage() {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='formsubmit']")));
         searchButton.click();
         logger.log(Level.INFO, "Car selection page performed.");
         return this;
@@ -165,5 +195,15 @@ public class HomePage extends AbstractPage {
 
     public String getAlertMessage() {
         return driver.switchTo().alert().getText();
+    }
+
+    private void clickPickUpDateButton(){
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"SearchResultsForm\"]/div[2]/div[1]/fieldset[1]/div[1]"))).click();
+    }
+
+    public void clickDropOffDateButton() {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"SearchResultsForm\"]/div[2]/div[1]/fieldset[2]/div[1]"))).click();
     }
 }
