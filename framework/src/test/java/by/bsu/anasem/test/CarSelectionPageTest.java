@@ -3,15 +3,15 @@ package by.bsu.anasem.test;
 import by.bsu.anasem.model.CarBookingCriteria;
 import by.bsu.anasem.page.HomePage;
 import by.bsu.anasem.service.CarBookingCreator;
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.logging.Logger;
+
 public class CarSelectionPageTest extends CommonConditions {
     private HomePage homePage = new HomePage(driver);
-    private final Logger logger = LogManager.getRootLogger();
+    private final Logger logger = (Logger) LogManager.getRootLogger();
 
     /*@Test
     public void bookingPlaceClosedAtTheRequestedHours() {

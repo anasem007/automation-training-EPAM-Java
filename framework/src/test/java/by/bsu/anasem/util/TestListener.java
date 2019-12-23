@@ -2,9 +2,8 @@ package by.bsu.anasem.util;
 
 import by.bsu.anasem.driver.DriverSingleton;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
@@ -15,10 +14,11 @@ import java.io.File;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 
 public class TestListener implements ITestListener {
-    private Logger logger = LogManager.getLogger(TestListener.class);
+    private Logger logger = (Logger) LogManager.getLogger(TestListener.class);
 
     public void onTestStart(ITestResult iTestResult) { }
 
@@ -46,7 +46,7 @@ public class TestListener implements ITestListener {
                     + getCurrentTimeAsString() +
                     ".png"));
         } catch (IOException e) {
-            logger.log(Level.ERROR, "Failed to save screenshot: ", e);
+            //logger.log(Level.ERROR, "Failed to save screenshot: ", e);
         }
     }
 

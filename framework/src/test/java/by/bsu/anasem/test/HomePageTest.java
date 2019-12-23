@@ -5,15 +5,16 @@ import by.bsu.anasem.model.UserData;
 import by.bsu.anasem.page.HomePage;
 import by.bsu.anasem.service.CarBookingCreator;
 import by.bsu.anasem.service.UserDataCreator;
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class HomePageTest extends CommonConditions{
-    private static final Logger logger = LogManager.getLogger(HomePageTest.class);
+    private static final Logger logger = (Logger) LogManager.getLogger(HomePageTest.class);
     private HomePage homePage = new HomePage(driver);
 
     @Test

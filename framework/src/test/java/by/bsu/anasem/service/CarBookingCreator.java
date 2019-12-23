@@ -41,7 +41,7 @@ public class CarBookingCreator {
     public static CarBookingCriteria withoutDropOffLocation(){
         return new CarBookingCriteria(TestDataReader.getTestData(TESTDATA_PICKUP_LOCATION),
                 TestDataReader.getTestData(TESDATA_PICKUP_DATE),
-                TestDataReader.getTestData(TESDATA_DROPOFF_DATE),
+                TestDataReader.getTestData(TESDATA_PICKUP_DATE),
                 TestDataReader.getTestData(TESTDATA_PICKUP_HOUR),
                 TestDataReader.getTestData(TESTDATA_PICKUP_MINUTE),
                 TestDataReader.getTestData(TESTDATA_DROPOFF_HOUR),
