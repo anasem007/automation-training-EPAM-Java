@@ -3,11 +3,8 @@ package by.bsu.anasem.test;
 import by.bsu.anasem.model.CarBookingCriteria;
 import by.bsu.anasem.page.HomePage;
 import by.bsu.anasem.service.CarBookingCreator;
-//import org.apache.logging.log4j.LogManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.logging.Logger;
 
 public class CarSelectionPageTest extends CommonConditions {
     private HomePage homePage = new HomePage(driver);
