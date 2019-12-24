@@ -2,7 +2,6 @@ package by.bsu.anasem.page;
 
 import by.bsu.anasem.model.CarBookingCriteria;
 import by.bsu.anasem.service.WaitHelper;
-import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,18 +12,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class HomePage extends AbstractPage {
 
     private final String HOMEPAGE_URL = "https://www.rentalcars.com/en/";
-    private final Logger logger = (Logger) LogManager.getRootLogger();
 
     @Override
     public HomePage openPage() {
         driver.navigate().to(HOMEPAGE_URL);
-        logger.info("Home page opened");
         return this;
     }
 
@@ -101,7 +96,6 @@ public class HomePage extends AbstractPage {
                 .selectPickUpTime(carBookingCriteria.getPuHour(), carBookingCriteria.getPuMinute())
                 .selectDropOffTime(carBookingCriteria.getDoHour(), carBookingCriteria.getDoMinute())
                 .redirectToCarSelectionPage();
-        logger.log(Level.INFO, "Car selection page performed.");
         return new CarSelectionPage(driver);
     }
 
@@ -125,14 +119,13 @@ public class HomePage extends AbstractPage {
         pickUpLocation.sendKeys(pickLoc);
         WebElement li = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@class='ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all']//li[1]")));
         li.click();
-        logger.info("Filled 'Pick-up location' field with " + pickLoc);
         return this;
     }
 
     public HomePage inputDropOffLocation(String dropLoc) {
         dropOffLocationButton.click();
-        pickUpLocation.sendKeys(dropLoc);
-        logger.info("Filled 'Drop Off location' field with " + dropLoc);
+        dropOffLocation.clear();
+       // dropOffLocation.sendKeys(dropLoc);
         return this;
     }
 
@@ -149,7 +142,6 @@ public class HomePage extends AbstractPage {
                 .orElse(null);
         foundDay.click();
         clickPickUpDateButton();
-        logger.info("Filled 'Pick-up date' field with " + picDate);
         return this;
     }
 
@@ -164,7 +156,6 @@ public class HomePage extends AbstractPage {
                 .findFirst()
                 .orElse(null);
         foundDay.click();
-        logger.info("Filled 'Drop off date' field with " + dropDate);
         return this;
     }
 
@@ -177,7 +168,6 @@ public class HomePage extends AbstractPage {
         WebDriverWait wait = new WebDriverWait(driver, 60);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='formsubmit']")));
         searchButton.click();
-        logger.log(Level.INFO, "Car selection page performed.");
         return this;
     }
 

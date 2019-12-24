@@ -2,8 +2,8 @@ package by.bsu.anasem.util;
 
 import by.bsu.anasem.driver.DriverSingleton;
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Level;
+//import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 
 public class TestListener implements ITestListener {
-    private Logger logger = (Logger) LogManager.getLogger(TestListener.class);
+   // private Logger logger = (Logger) LogManager.getLogger(TestListener.class);
 
     public void onTestStart(ITestResult iTestResult) { }
 

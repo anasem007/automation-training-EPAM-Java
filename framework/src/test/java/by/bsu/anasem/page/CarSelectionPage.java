@@ -1,6 +1,6 @@
 package by.bsu.anasem.page;
 
-import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class CarSelectionPage extends AbstractPage {
 
     private final String CAR_SELECTION_PAGE_URL = "https://www.rentalcars.com/SearchResults.do";
-    private final Logger logger = (Logger) LogManager.getRootLogger();
+    //private final Logger logger = (Logger) LogManager.getRootLogger();
 
     @FindBy(xpath = "//div[@class='stage-header cf']//h1")
     private WebElement infoMessage;
@@ -26,7 +26,7 @@ public class CarSelectionPage extends AbstractPage {
     @Override
     public AbstractPage openPage() {
         driver.navigate().to(CAR_SELECTION_PAGE_URL);
-        logger.info("Car selection page opened");
+     //   logger.info("Car selection page opened");
         return this;
     }
 
