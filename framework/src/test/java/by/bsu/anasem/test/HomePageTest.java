@@ -25,7 +25,7 @@ public class HomePageTest extends CommonConditions {
         Assert.assertEquals("Pickup Date must be before Drop off date\n", str);
     }
 
-   /* @Test
+    @Test
     public void bookingCarWithEmptyDropOffLocation() {
         CarBookingCriteria carBookingCriteria = CarBookingCreator.withEmptyDropOffLocation();
         String str = new HomePage(driver)
